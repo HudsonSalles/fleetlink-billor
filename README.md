@@ -24,8 +24,8 @@ A modern fleet management system built with React, TypeScript, and Firebase.
 1. **Clone and install**
 
    ```bash
-   git clone https://github.com/HudsonSalles/fleetLink.git
-   cd fleetLink
+   git clone https://github.com/HudsonSalles/fleetlink-billor
+   cd fleetlink-billor
    npm install
    ```
 
