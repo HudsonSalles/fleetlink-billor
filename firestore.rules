@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Simplified helper functions - only admin users
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+    
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+    
+    // Users collection - profiles and user management
+    match /users/{userId} {
+      // Only admins can access user profiles
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // Trucks collection - fleet management
+    match /trucks/{truckId} {
+      // Only admins can access trucks
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // Drivers collection - driver management  
+    match /drivers/{driverId} {
+      // Only admins can access drivers
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // Loads collection - load management
+    match /loads/{loadId} {
+      // Only admins can access loads
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // Dashboard/Analytics collection (if needed)
+    match /analytics/{document} {
+      // Only admins can access analytics data
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // System configuration (if needed) 
+    match /config/{document} {
+      // Only admins can access config
+      allow read, create, update, delete: if isAdmin();
+    }
+    
+    // Default deny rule - explicitly deny access to any other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

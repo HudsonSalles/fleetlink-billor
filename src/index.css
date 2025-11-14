@@ -1,0 +1,224 @@
+/**
+ * FleetLink Application Styles
+ * 
+ * Main CSS file importing TailwindCSS and custom styles
+ * for the FleetLink transportation management platform.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  /* Chart color variables for recharts */
+  :root {
+    --chart-1: 220 70% 50%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  html {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.938rem;
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100;
+  }
+
+  /* Focus styles for better accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Card component styles */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-card border border-gray-200 dark:border-gray-700;
+  }
+
+  .card:hover {
+    @apply shadow-card-hover;
+  }
+
+  /* Form input styles */
+  .form-input {
+    @apply block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white;
+  }
+
+  /* Hide number input spinners/arrows globally */
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    margin: 0;
+  }
+
+  /* Date input calendar icon styles */
+  input[type="date"] {
+    position: relative;
+  }
+
+  /* Show calendar icon in light mode - dark icon */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23374151'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e");
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  /* Show calendar icon in dark mode - white icon */
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e");
+    opacity: 0.8;
+  }
+
+  .dark input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-primary-500;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success-100 text-success-800 dark:bg-success-800 dark:text-success-100;
+  }
+
+  .badge-warning {
+    @apply bg-warning-100 text-warning-800 dark:bg-warning-800 dark:text-warning-100;
+  }
+
+  .badge-danger {
+    @apply bg-danger-100 text-danger-800 dark:bg-danger-800 dark:text-danger-100;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary-100 text-secondary-800 dark:bg-secondary-800 dark:text-secondary-100;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  /* Scrollbar styling for webkit browsers */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500 dark:bg-gray-500;
+  }
+
+  /* Animation utilities */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+}
+
+/* Mapbox GL CSS - required for map functionality */
+@import url("https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css");
+
+/* Custom map styles */
+.mapbox-ctrl-logo {
+  @apply opacity-50;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply text-black bg-white;
+  }
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#3887FF] rounded-full hover:bg-[#3887FF]/80 transition-colors duration-200;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3887ff transparent;
+}
+
+/* Custom scrollbar for files section - smaller and more discrete */
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full hover:bg-gray-500 transition-colors duration-200;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 transparent;
+}

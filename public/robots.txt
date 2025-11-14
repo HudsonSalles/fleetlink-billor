@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+# FleetLink robots.txt
+
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+
+Allow: /
+
+Sitemap: https://fleetlink.app/sitemap.xml

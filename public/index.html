@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3887FF" />
+    <meta
+      name="description"
+      content="FleetLink - Transportation Management Platform for connecting drivers, trucks, and loads in one unified platform."
+    />
+    <meta name="author" content="FleetLink Development Team" />
+    
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="FleetLink - Transportation Management" />
+    <meta property="og:description" content="Connecting drivers, trucks, and loads in one platform" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fleetlink.app" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FleetLink - Transportation Management" />
+    <meta name="twitter:description" content="Connecting drivers, trucks, and loads in one platform" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Mapbox GL CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+    
+    <title>FleetLink - Transportation Management Platform</title>
+    
+    <!-- Custom CSS Variables -->
+    <style>
+      :root {
+        --primary-500: #3887FF;
+        --primary-600: #2563EB;
+        --gray-50: #F9FAFB;
+        --gray-900: #111827;
+      }
+      
+      /* Loading screen styles */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--gray-50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e5e7eb;
+        border-top: 4px solid var(--primary-500);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .loading-screen {
+          background: var(--gray-900);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run FleetLink.</noscript>
+    
+    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div class="loading-spinner"></div>
+        <p style="margin-top: 1rem; color: #6b7280; font-family: 'Inter', sans-serif;">
+          Loading FleetLink...
+        </p>
+      </div>
+    </div>
+    
+    <!-- React root element -->
+    <div id="root"></div>
+    
+    <!-- Remove loading screen once React loads -->
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        // Remove loading screen after a short delay to allow React to render
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.3s ease-out';
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 300);
+          }
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
